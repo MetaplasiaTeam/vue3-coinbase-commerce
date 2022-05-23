@@ -1,0 +1,58 @@
+{
+  "name": "vue3-coinbase-commerce",
+  "license": "MIT",
+  "version": "0.0.1",
+  "author": {
+    "name": "EndureBlaze",
+    "email": "nihaocun20001225@gmail.com",
+    "url": "https://github.com/endureblaze"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaplasiaTeam/vue3-coinbase-commerce"
+  },
+  "bugs": {
+    "url": "https://github.com/MetaplasiaTeam/vue3-coinbase-commerce/issues"
+  },
+  "keywords": [
+    "vue3",
+    "vue",
+    "coinbase",
+    "coinbase-commerce",
+    "vue3-coinbase-commerce",
+    "vue-coinbase-commerce",
+    "vue3-coinbase",
+    "vue-coinbase"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue3-coinbase-commerce.es.umd.js",
+  "module": "./dist/vue3-coinbase-commerce.es.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-coinbase-commerce.es.js",
+      "require": "./dist/vue3-coinbase-commerce.umd.js"
+    }
+  },
+  "types": "dist/package/index.d.ts",
+  "dependencies": {
+    "sass": "^1.52.0",
+    "vue": "^3.2.25",
+    "vue3-coinbase-commerce": "^0.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "ts-morph": "^14.0.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vite-plugin-dts": "^1.1.1",
+    "vite-plugin-libcss": "^1.0.5",
+    "vue-tsc": "^0.34.15"
+  }
+}
