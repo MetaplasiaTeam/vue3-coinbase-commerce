@@ -1,7 +1,7 @@
 {
   "name": "vue3-coinbase-commerce",
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "EndureBlaze",
     "email": "nihaocun20001225@gmail.com",
@@ -43,8 +43,7 @@
   "types": "dist/package/index.d.ts",
   "dependencies": {
     "sass": "^1.52.0",
-    "vue": "^3.2.25",
-    "vue3-coinbase-commerce": "^0.0.1"
+    "vue": "^3.2.25"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
