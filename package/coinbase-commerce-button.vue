@@ -24,6 +24,9 @@ const emit = defineEmits<{
   (e: 'onChargeSuccess', data: MessageData): void
   (e: 'onChargeFailure', data: MessageData): void
   (e: 'onPaymentDetected', data: MessageData): void
+  (e: 'onModalLoaded1', data: { checkoutId: string }): void
+  (e: 'onModalLoaded2', data: { orderId: string }): void
+  (e: 'onChargeCreated'): void
   (e: 'onModalClose'): void
   (e: 'onLoad'): void
 }>()
@@ -43,6 +46,11 @@ const handleChargeFailure = (data: MessageData) => emit('onChargeFailure', data)
 const handlePaymentDetected = (data: MessageData) =>
   emit('onPaymentDetected', data)
 const handleLoad = () => emit('onLoad')
+const handleModalLoaded1 = (data: { checkoutId: string }) =>
+  emit('onModalLoaded1', data)
+const handleModalLoaded2 = (data: { orderId: string }) =>
+  emit('onModalLoaded2', data)
+const handleChargeCreated = () => emit('onChargeCreated')
 </script>
 
 <template>
@@ -56,8 +64,12 @@ const handleLoad = () => emit('onLoad')
     <CoinbaseIframe
       v-if="showIframe"
       :checkout-id="checkoutId"
+      :charge-id="chargeId"
       :disable-caching="disableCaching"
       @on-charge-success="handleChargeSuccess"
+      @on-modal-loaded1="handleModalLoaded1"
+      @on-modal-loaded2="handleModalLoaded2"
+      @on-charge-created="handleChargeCreated"
       @on-charge-failure="handleChargeFailure"
       @on-payment-detected="handlePaymentDetected"
       @on-error="handleError"

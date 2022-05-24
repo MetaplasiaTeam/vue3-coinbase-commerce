@@ -20,11 +20,13 @@ const emit = defineEmits<{
   (e: 'onChargeSuccess', data: MessageData): void
   (e: 'onChargeFailure', data: MessageData): void
   (e: 'onPaymentDetected', data: MessageData): void
+  (e: 'onModalLoaded1', data: { checkoutId: string }): void
+  (e: 'onModalLoaded2', data: { orderId: string }): void
+  (e: 'onChargeCreated'): void
   (e: 'onError', data: MessageData): void
   (e: 'onModalClose'): void
   (e: 'onLoad'): void
 }>()
-
 const hostName = ref('')
 const origin = 'https://commerce.coinbase.com'
 const uuid = util.generateUUID()
@@ -61,6 +63,15 @@ function handleMessage(msg: { origin: string; data: MessageData }) {
       break
     case 'checkout_modal_closed':
       emit('onModalClose')
+    case 'checkout_modal_loaded':
+      if ((msg.data as any).checkout !== undefined) {
+        emit('onModalLoaded1', { checkoutId: (msg.data as any).checkout })
+      } else {
+        emit('onModalLoaded2', { orderId: (msg.data as any).orderCode })
+      }
+      break
+    case 'charge_created':
+      emit('onChargeCreated')
     default:
       break
   }

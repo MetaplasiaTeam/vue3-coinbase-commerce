@@ -31,6 +31,8 @@ In Vue Single-File Components (SFC):
 <style scoped></style>
 ```
 
+If you want to get the `checkoutId` dynamically from somewhere to use it, please check [here](#coinbase-wrap)
+
 ## Getting Started
 
 1. To start accepting digital currency payments, first register for a Coinbase Commerce
@@ -45,26 +47,26 @@ account [here](https://commerce.coinbase.com).
 
 In addition to the regular `button` props, this component accepts some custom props:
 
-| Prop Name        | default | required              | type      |
-| ---------------- | ------- | --------------------- | --------- |
-| `checkoutId`     | nil     | If no chargeId, yes   | `string`  |
-| `chargeId`       | nil     | If no checkoutId, yes | `string`  |
-| `disableCaching` | true    | no                    | `boolean` |
+| Prop Name        | default   | required              | type      |
+| ---------------- | --------- | --------------------- | --------- |
+| `checkoutId`     | undefined | If no chargeId, yes   | `string`  |
+| `chargeId`       | undefined | If no checkoutId, yes | `string`  |
+| `disableCaching` | true      | no                    | `boolean` |
 
 **Warning**: If `disableCaching` is set to `true`, users that accidentally close their payment windows will be unable to see their transaction's status upon reopening.
 
 ## Emits
 
-| Emit Name           | default | required | type                           |
-| ------------------- | ------- | -------- | ------------------------------ |
-| `onLoad`            | undefined     | no       | `() => void`                   |
-| `onModalLoaded1`    | undefined     | no       | `() => { checkoutId: string }` |
-| `onModalLoaded2`    | undefined     | no       | `() => { orderId: string }`    |
-| `onChargeCreated`   | undefined     | no       | `() => void`                   |
-| `onChargeSuccess`   | undefined     | no       | `(MessageData) => void`        |
-| `onChargeFailure`   | undefined     | no       | `(MessageData) => void`        |
-| `onPaymentDetected` | undefined     | no       | `(MessageData) => void`        |
-| `onModalClosed`     | undefined     | no       | `()=>void`                     |
+| Emit Name           | default   | required | type                           |
+| ------------------- | --------- | -------- | ------------------------------ |
+| `onLoad`            | undefined | no       | `() => void`                   |
+| `onModalLoaded1`    | undefined | no       | `() => { checkoutId: string }` |
+| `onModalLoaded2`    | undefined | no       | `() => { orderId: string }`    |
+| `onChargeCreated`   | undefined | no       | `() => void`                   |
+| `onChargeSuccess`   | undefined | no       | `(MessageData) => void`        |
+| `onChargeFailure`   | undefined | no       | `(MessageData) => void`        |
+| `onPaymentDetected` | undefined | no       | `(MessageData) => void`        |
+| `onModalClosed`     | undefined | no       | `()=>void`                     |
 
 `MessageData` like this:
 
@@ -87,6 +89,41 @@ export type MessageData = {
 For more please click [here](package/types.ts)
 
 **Info**: Perhaps you noticed that there are two parts, `onModalLoaded1` and `onModalLoaded2`, but what is the difference between these two parts? Simply put, if you pass in the `checkoutId` parameter, this part of the callback process of `onModalLoaded1` -> `onChargeCreated` ->  `onModalLoaded2`, if you pass in the `chargeId` parameter, it will directly call back `onModalLoaded2`. This can be used when the checkout to get the corresponding charge that is order.
+
+## Coinbase Wrap
+
+This component allows you to use the checkoutid dynamically and consists of two parts, the `CoinbaseWrap` component and the `useCoinbase` function.
+
+Introduce the component in App.vue or wherever you need it.
+
+```html
+<script setup lang="ts">
+  // import
+  import { CoinbaseWrap } from 'vue3-coinbase-commerce'
+</script>
+
+<template><div>
+    <CoinbaseWrap/>
+</div></template>
+
+<style scoped></style>
+```
+
+Then use the `useCoinbase` function to dynamically control the display of the page
+
+```html
+<script setup lang="ts">
+  // import
+  import { CoinbaseWrap, useCoinbase } from 'vue3-coinbase-commerce'
+
+  const { openWithCheckoutId } = useCoinbase()
+  // get checkoutId from somewhere
+  const checkoutId = someFunction()
+  openWithCheckoutId(checkoutId)
+</script>
+```
+
+The subsequent actions are the same as using the buttons, including the events that can be triggered.
 
 ## License
 

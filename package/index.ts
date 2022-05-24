@@ -1,5 +1,8 @@
 import CoinbaseCommerceButton from './coinbase-commerce-button.vue'
-const components = [CoinbaseCommerceButton]
+import CoinbaseWrap from './coinbase-wrap.vue'
+import { useCoinbase } from './coinbase'
+
+const components = [CoinbaseCommerceButton, CoinbaseWrap]
 
 CoinbaseCommerceButton.install = function (Vue: any) {
   Vue.component(CoinbaseCommerceButton.name, CoinbaseCommerceButton)
@@ -11,6 +14,6 @@ const install = function (Vue: any) {
   })
 }
 
-export { CoinbaseCommerceButton }
+export { CoinbaseCommerceButton, CoinbaseWrap, useCoinbase }
 
 export default { install }

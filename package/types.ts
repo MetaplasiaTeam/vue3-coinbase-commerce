@@ -79,6 +79,8 @@ export type MessageData = {
     | 'payment_detected'
     | 'error_not_found'
     | 'checkout_modal_closed'
+    | 'checkout_modal_loaded'
+    | 'charge_created'
   charge: Charge
 }
 
