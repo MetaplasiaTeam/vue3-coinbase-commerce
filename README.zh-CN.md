@@ -54,7 +54,7 @@ npm install --save vue3-coinbase-commerce
 
 **警告**: 如果 `disableCaching` 设置为 `true`，用户在意外关闭他们的支付窗口时将无法再次看到他们的先前交易状态。
 
-## 事件
+## 可触发事件
 
 | 事件名称            | 默认值    | 必需   | 类型                           |
 | ------------------- | --------- | ------ | ------------------------------ |
@@ -67,7 +67,7 @@ npm install --save vue3-coinbase-commerce
 | `onPaymentDetected` | undefined | 不需要 | `(MessageData) => void`        |
 | `onModalClosed`     | undefined | 不需要 | `()=>void`                     |
 
-`MessageData` 就想这样：
+`MessageData` 就像这样：
 
 ```typescript
 export type MessageData = {
@@ -122,7 +122,7 @@ export type MessageData = {
 </script>
 ```
 
-后续操作和使用按钮是一致的，包括可以触发的事件。
+后续操作和使用按钮是一致的，包括可触发事件。
 
 ## License
 

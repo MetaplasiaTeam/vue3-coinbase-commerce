@@ -123,7 +123,7 @@ Then use the `useCoinbase` function to dynamically control the display of the pa
 </script>
 ```
 
-The subsequent actions are the same as using the buttons, including the events that can be triggered.
+The subsequent actions are the same as using the buttons, including the emits that can be triggered.
 
 ## License
 
